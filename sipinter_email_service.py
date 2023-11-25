@@ -6,18 +6,19 @@ from flask import Flask, request, jsonify
 app = Flask(__name__)
 
 # Set your email credentials and details
+sender_name = "SIPINTER LP MA'ARIF"
 sender_email = "awscloud221@gmail.com"
 sender_password = "fyexijkhzkrdrcjm"
 
 # Read HTML content from file
 with open("email_template.html", "r") as file:
-    html_content = file.read()
+    html_template = file.read()
 
 # Construct the email message
-message = """\
+template_message = """\
 Subject: {{subject}}
 To: {{receiver_email}}
-From: {{sender_email}}
+From: {{sender_name}} <{{sender_email}}>
 Content-Type: text/html
 
 {{html_content}}
@@ -27,7 +28,7 @@ Content-Type: text/html
 def emailService():
     trxid = uuid.uuid4()
     try:
-        global html_content, message
+        global html_template, template_message
         # Get JSON data from the request body
         data = request.get_json()
         app.logger.info("[{}] received request with body : {}".format(trxid, data))
@@ -37,8 +38,10 @@ def emailService():
         recipient = data["recipient"]
         content = data["content"]
 
+        html_content = html_template
+        message = template_message
         html_content = html_content.replace("{{recipient}}", recipient).replace("{{email_content}}", content)
-        message = message.replace("{{subject}}", subject).replace("{{receiver_email}}", receiver_email).replace("{{sender_email}}", sender_email).replace("{{html_content}}", html_content)
+        message = message.replace("{{subject}}", subject).replace("{{receiver_email}}", receiver_email).replace("{{sender_name}}", sender_name).replace("{{sender_email}}", sender_email).replace("{{html_content}}", html_content)
         
         # Send email in a separate thread
         send_email_in_thread(trxid, sender_email, receiver_email, message)
@@ -74,5 +77,5 @@ def send_email_in_thread(trxid, sender_email, receiver_email, message):
     email_thread.start()
 
 if __name__ == '__main__':
-    app.run(debug=True)
-    # app.run(port=8081)
+    # app.run(debug=True)
+    app.run(port=8081,debug=True)
