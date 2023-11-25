@@ -41,8 +41,7 @@ start)
 	#enter to virtual environtment
 	source /var/www/python_services/venv/bin/activate
 	#run app in background
-	# nohup python3 $app > $trxlog 2>&1 &
-	nohup python3 -u $app > $trxlog &
+	nohup python3 $app > $trxlog 2>&1 &
 
 	pid=$!
 	echo "$trxname started ($pid)"
