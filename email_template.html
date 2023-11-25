@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <style>
+        body {
+            font-family: 'Arial', sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #e5e1e1 !important;
+        }
+
+        .container {
+            width: 100%;
+            max-width: 600px;
+            margin: 0 auto;
+            background-color: #FFFFFF;
+            padding: 20px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        }
+
+        h1 {
+            font-size: 1.8em;
+            color: #FFFFFF;
+        }
+
+        p {
+            font-size: 1.2em;
+            color: #555555;
+        }
+        .image {
+            text-align: center;
+        }
+        .image img {
+            max-width: 250px;
+        } 
+
+        .header {
+            text-align: center;
+            padding: .6rem 0;
+            background: url("https://sipinter.maarifnu.or.id/assets/images/backgrounds/layout_bg.jpg") no-repeat center;
+            border-radius: .7rem;
+        }
+
+        .button {
+            text-align: center;
+        }
+
+        .cta-button {
+            display: inline-block;
+            padding: 10px 20px;
+            text-decoration: none;
+            background-color: #007BFF;
+            color: #FFFFFF !important;
+            border-radius: 5px;
+        }
+        .footer {
+            margin-top: 1.4rem;
+            text-align: center;
+        }
+        
+        .footer small {
+            display: block;
+            font-size: .8em;
+            color: #666666;
+        }
+
+        @media only screen and (max-width: 480px) {
+            .container {
+                padding: 10px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="image">
+            <a href="https://sipinter.maarifnu.or.id">
+                <img src="https://sipinter.maarifnu.or.id/assets/images/logos/logo.png" alt="Logo">
+            </a>
+        </div>
+        <div class="header">
+            <h1>SIPINTER LP MA'ARIF NU PBNU</h1>
+        </div>
+        <p>Halo {{recipient}},</p>
+
+        {{email_content}}
+
+        <p style="margin-top:1.1rem;">Terima Kasih, Salam Hormat. <br>
+            Tim SIPINTER.</p>
+        <div class="footer">
+            <small>Copyright &copy; 2023 Sistem Administrasi Pendidikan Terpadu LP Ma'arif NU PBNU. All Rights Reserved. </small>
+        </div>
+
+    </div>
+</body>
+</html>
